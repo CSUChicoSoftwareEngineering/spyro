@@ -206,6 +206,24 @@ class Form(spyral.View):
         #self.add_child(widget)
         setattr(self.fields, name, widget)
 
+    def remove_widget(self, name):
+        for i in range(0, len(self._widgets) - 1):
+            if (self._widgets[i].name == name):
+                wid = self._widgets.pop(i)
+                wid.kill()
+
+    def hide_widget(self, name):
+        for i in range(0, len(self._widgets) - 1):
+            if (self._widgets[i].name == name):
+                self._widgets[i]._visible = False
+                self._widgets[i]._changed()
+
+    def reveal_widget(self, name):
+        for i in range(0, len(self._widgets) - 1):
+            if (self._widgets[i].name == name):
+                self._widgets[i]._visible = True
+                self._widgets[i]._changed()
+
     def _get_values(self):
         """
         A dictionary of the values for all the fields, mapping the name
