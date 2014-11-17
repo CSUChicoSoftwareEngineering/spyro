@@ -52,7 +52,7 @@ Check out the `tracked issues on github <https://github.com/platipy/spyral/issue
 Roadmap (Spyro Group)
 -------
 
-Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features `here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral/form.py>`_.
+Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features `here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral/form.py>`_. (github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral/form.py)
 
 Documentation on how to use form.py is supplied in this code example: `forms.py <https://github.com/platipy/spyral/blob/master/examples/forms.py>`_
 
