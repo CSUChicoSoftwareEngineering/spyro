@@ -47,3 +47,9 @@ Known Bugs
 ----------
 
 Check out the `tracked issues on github <https://github.com/platipy/spyral/issues?state=open>`_ or the `Open Issues <http://platipy.readthedocs.org/en/latest/openproblems.html>`_ on Platipy for a listing of the things still needed.
+
+
+Roadmap (Spyro Group)
+-------
+
+Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features 'here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral>'_
