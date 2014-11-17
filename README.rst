@@ -56,4 +56,4 @@ Previously, Spyral didn't have support for adding, deleting or hiding a widget. 
 
 Documentation on how to use form.py is supplied in this code example: `forms.py <https://github.com/platipy/spyral/blob/master/examples/forms.py>`_
 
-To add your own custom libraries to Spyral, simply include the <file>.py in the `spyral <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral`_ folder. You shoudl then be able to use your functions normally within a Spyral-based project.
+To add your own custom libraries to Spyral, simply include the <file>.py in the `spyral <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral>`_ folder. You shoudl then be able to use your functions normally within a Spyral-based project.
