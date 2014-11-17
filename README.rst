@@ -47,3 +47,13 @@ Known Bugs
 ----------
 
 Check out the `tracked issues on github <https://github.com/platipy/spyral/issues?state=open>`_ or the `Open Issues <http://platipy.readthedocs.org/en/latest/openproblems.html>`_ on Platipy for a listing of the things still needed.
+
+
+Roadmap (Spyro Group)
+-------
+
+Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features `here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral/form.py>`_. (github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral/form.py)
+
+Documentation on how to use form.py is supplied in this code example: `forms.py <https://github.com/platipy/spyral/blob/master/examples/forms.py>`_
+
+To add your own custom libraries to Spyral, simply include the <file>.py in the `spyral <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral>`_ folder. You should then be able to use your functions normally within a Spyral-based project.
