@@ -52,4 +52,4 @@ Check out the `tracked issues on github <https://github.com/platipy/spyral/issue
 Roadmap (Spyro Group)
 -------
 
-Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features 'here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral>'_
+Previously, Spyral didn't have support for adding, deleting or hiding a widget. We've implemented these features `here <https://github.com/CSUChicoSoftwareEngineering/spyro/tree/master/spyral>`_
