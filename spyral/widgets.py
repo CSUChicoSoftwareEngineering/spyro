@@ -6,7 +6,6 @@ import math
 import string
 import pygame
 from bisect import bisect_right
-from weakref import ref as _wref
 
 class BaseWidget(spyral.View):
     """
@@ -17,17 +16,9 @@ class BaseWidget(spyral.View):
     def __init__(self, form, name):
         self.__style__ = form.__class__.__name__ + '.' + name
         self.name = name
-        self._form = _wref(form)
+        self.form = form
         spyral.View.__init__(self, form)
         self.mask = spyral.Rect(self.pos, self.size)
-        
-    def _get_form(self):
-        """
-        The parent form that this Widget belongs to. Read-only.
-        """
-        return self._form()
-        
-    form = property(_get_form)
 
     def _changed(self):
         """
@@ -386,7 +377,29 @@ class RadioButtonWidget(ToggleButtonWidget):
     ..warning:: This widget is incomplete.
     """
     def __init__(self, form, name, group):
-        ToggleButtonWidget.__init__(self, form, name, _view_x)
+        ToggleButtonWidget.__init__(self, form, name, "")
+        group.addthisbutton(self)
+        self.uncheck(self)
+
+    def _handle_mouse_up(self, event):
+        """
+        The function called when the mouse is released while on this widget.
+        """
+        pass
+
+    def _handle_mouse_down(self, event):
+        """
+        Triggers the mouse to change states.
+        """
+        if self.state.startswith('down'):
+            self.state = self.state.replace('down', 'up')
+        elif self.state.startswith('up'):
+            group.uncheckall()
+            self.state = self.set_state('down')
+
+    def _uncheck(self):
+        self.state = self.set_state('up')
+
 
 class RadioGroupWidget(object):
     """
@@ -395,7 +408,14 @@ class RadioGroupWidget(object):
     ..warning:: This widget is incomplete.
     """
     def __init__(self, buttons, selected = None):
-        pass
+        buttons = []
+
+    def _addthisbutton(newbutton):
+        buttons.extend(newbutton)
+
+    def _uncheckall():
+        for i in array:
+            array[i].uncheck(i)
 
 
 class TextInputWidget(BaseWidget):
