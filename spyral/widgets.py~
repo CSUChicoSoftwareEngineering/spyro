@@ -421,31 +421,6 @@ class RadioGroupWidget(object):
             array[i].uncheck(i)
 
 
-class CounterWidget(ButtonWidget):
-    """
-    A CounterWidget is a simple way to display a score count.
-    """
-    def __init__(self, form, name, text = "Okay"):
-        ButtonWidget.__init__(self, form, name, text)
-
-    def _get_text(self):
-        return self._text
-
-    def update_text(self, text):
-        self._text = text
-        self._text_sprite.image = self.font.render(self._text)
-        self._content_size = self._text_sprite.image.size
-        self._render_images()
-
-    def _on_state_change(self):
-        """
-        A function triggered whenever this widget changes size.
-        """
-        self._text_sprite.pos = spyral.util._anchor_offset(self._anchor,
-                                                          self._padding[0] / 2,
-                                                          self._padding[1] / 2)
-
-
 class TextInputWidget(BaseWidget):
     """
     The TextInputWidget is used to get text data from the user, through an
