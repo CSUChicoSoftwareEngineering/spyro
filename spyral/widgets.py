@@ -371,56 +371,6 @@ class CheckboxWidget(ToggleButtonWidget):
     def __init__(self, form, name):
         ToggleButtonWidget.__init__(self, form, name, "")
 
-class RadioButtonWidget(ToggleButtonWidget):
-    """
-    A RadioButton is similar to a CheckBox, except it is to be placed into a
-    RadioGroup, which will ensure that only one RadioButton in it's group is
-    selected at a time.
-
-    ..warning:: This widget is incomplete.
-    """
-    def __init__(self, form, name, group):
-        ToggleButtonWidget.__init__(self, form, name, "")
-        group.addthisbutton(self)
-        self.uncheck(self)
-
-    def _handle_mouse_up(self, event):
-        """
-        The function called when the mouse is released while on this widget.
-        """
-        pass
-
-    def _handle_mouse_down(self, event):
-        """
-        Triggers the mouse to change states.
-        """
-        if self.state.startswith('down'):
-            self.state = self.state.replace('down', 'up')
-        elif self.state.startswith('up'):
-            group.uncheckall()
-            self.state = self.set_state('down')
-
-    def _uncheck(self):
-        self.state = self.set_state('up')
-
-
-class RadioGroupWidget(object):
-    """
-    Only one RadioButton in a RadioGroup can be selected at a time.
-
-    ..warning:: This widget is incomplete.
-    """
-    def __init__(self, buttons, selected = None):
-        buttons = []
-
-    def _addthisbutton(newbutton):
-        buttons.extend(newbutton)
-
-    def _uncheckall():
-        for i in array:
-            array[i].uncheck(i)
-
-
 class CounterWidget(ButtonWidget):
     """
     A CounterWidget is a simple way to display a score count.
@@ -1001,6 +951,111 @@ class TextInputWidget(BaseWidget):
         self._cursor.visible = False
         self.default_value = self._default_value_permanant
 
+class ToggleRadioWidget(ButtonWidget):
+
+    def __init__(self, form, name, text = ""):
+        ButtonWidget.__init__(self, form, name, text)
+
+    def _handle_mouse_up(self, event):
+        pass
+
+    def _handle_mouse_down(self, event):
+        for w in self.form._widgets:
+            if w._get_value() is "up" and w is not self._get_value():
+                w.state = w.state.replace('up', 'down')
+
+        if self.state.startswith('down'):
+            self.state = self.state.replace('down', 'up')
+        elif self.state.startswith('up'):
+            self.state = self.state.replace('up', 'down')
+            
+class RadioButtonWidget(ToggleRadioWidget):
+    def __init__(self, form, name):
+        ToggleRadioWidget.__init__(self, form, name, "")
+        self.state = self.state.replace('up', 'down')
+
+class DropDownWidget(MultiStateWidget):
+    """
+        Incomplete
+    """
+    def __init__(self, form, name, width, height, text = "Okay"):
+
+        MultiStateWidget.__init__(self, form, name,
+                                  ['focused', 'unfocused', 'selected', 'hidden'])
+
+        self.text_height = height
+        self.text_width = width
+        self._text_sprite = spyral.Sprite(self)
+        self._text_sprite.layer = "content"
+        self.text = text
+
+    def _get_value(self):
+        """
+        Whether or not this widget is currently ``"up"`` or ``"down"``.
+        """
+        if "up" in self._state:
+            return "up"
+        else:
+            return "down"
+
+    def _get_text(self):
+        """
+        The text rendered on this button (``str``).
+        """
+        return self._text
+
+    def _set_text(self, text):
+        self._text_sprite.image = self.font.render(self._text)
+        self._content_size = (self.text_width, self.text_height)
+        self._render_images()
+
+    def _on_state_change(self):
+        pass
+
+    value = property(_get_value)
+    text = property(_get_text, _set_text)
+
+    def _handle_mouse_up(self, event):
+        pass
+    def _handle_mouse_down(self, event):
+        """
+        The function called when the mouse is pressed while on this widget.
+        Fires a ``clicked`` event.
+        """
+        self.state = 'selected'
+
+    def _handle_mouse_out(self, event):
+        pass
+
+    def _handle_mouse_over(self, event):
+        pass
+
+    def _handle_mouse_motion(self, event):
+        pass
+
+    def _handle_focus(self, event):
+        pass
+
+    def _handle_blur(self, event):
+        pass
+
+    def _handle_key_down(self, event):
+        pass
+
+    def _handle_key_up(self, event):
+        pass
+
+    def __stylize__(self, properties):
+        """
+        Applies the *properties* to this scene. This is called when a style
+        is applied.
+
+        :param properties: a mapping of property names (strings) to values.
+        :type properties: ``dict``
+        """
+        self.font = spyral.Font(*properties.pop('font'))
+        self._text = properties.pop('text', "Button")
+        MultiStateWidget.__stylize__(self, properties)
 
 # Module Magic
 
@@ -1036,3 +1091,4 @@ widgets.register('RadioButton', RadioButtonWidget)
 widgets.register('Checkbox', CheckboxWidget)
 widgets.register('ToggleButton', ToggleButtonWidget)
 widgets.register('Button', ButtonWidget)
+widgets.register('DropDown', DropDownWidget)
