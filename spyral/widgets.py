@@ -7,6 +7,11 @@ import string
 import pygame
 from bisect import bisect_right
 
+#put text
+#freeplay
+#replace counter images
+#make a radio button selected at start
+
 class BaseWidget(spyral.View):
     """
     The BaseWidget is the simplest possible widget that all other widgets
@@ -1092,3 +1097,4 @@ widgets.register('Checkbox', CheckboxWidget)
 widgets.register('ToggleButton', ToggleButtonWidget)
 widgets.register('Button', ButtonWidget)
 widgets.register('DropDown', DropDownWidget)
+widgets.register('Counter', CounterWidget)
